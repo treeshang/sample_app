@@ -1,6 +1,7 @@
 source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.3'
+gem 'gravatar_image_tag'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -45,4 +46,5 @@ end
 group :test do
 	gem 'rspec'
 	gem 'webrat'
+	gem 'factory_girl_rails'
 end
