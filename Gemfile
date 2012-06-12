@@ -2,11 +2,12 @@ source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.3'
 gem 'gravatar_image_tag'
+gem 'sqlite3'
+gem 'will_paginate'
+gem 'activerecord-postgresql-adapter'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -41,10 +42,12 @@ gem 'jquery-rails'
 group :development do
 	gem 'rspec-rails'
 	gem 'annotated_models'
+	gem 'faker'
 end
 
 group :test do
 	gem 'rspec'
 	gem 'webrat'
 	gem 'factory_girl_rails'
+	gem 'spork'
 end
