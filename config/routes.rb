@@ -3,6 +3,7 @@ SampleApp::Application.routes.draw do
 
 	resources :users
 	resources :sessions, :only => [:new, :create, :destory]
+	resources :microposts,	:only => [:create, :destroy]
 
 
   get "pages/contact"
@@ -23,6 +24,7 @@ SampleApp::Application.routes.draw do
 
 	root :to => 'pages#home'
 
+end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -79,4 +81,3 @@ SampleApp::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-end

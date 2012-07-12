@@ -43,6 +43,13 @@ describe UsersController do
 				end
 			end
 
+			it "should have no link to the delete" do
+				get :index
+				@users[0..2].each do |user|
+					response.should_not have_selector("a", :content => "delete")
+				end
+			end
+
 			it "should paginate users" do
 				get :index
 				response.should have_selector("div.pagination")
@@ -84,6 +91,14 @@ describe UsersController do
 		it "should have a profile image " do
 			get :show ,:id=>@user
 			response.should have_selector("h1>img", :class => "gravatar")
+		end
+
+		it "should show the user's microposts" do
+		  mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+		  mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+		  get :show, :id => @user
+      response.should have_selector("span.content", :content => mp1.content)
+      response.should have_selector("span.content", :content => mp2.content)
 		end
 	end
 
@@ -314,12 +329,22 @@ describe UsersController do
 				admin = Factory(:user, :email => "admin@example.com", :admin => true)
 				test_sign_in(admin)
 			end
+
+			it "should have the delete link" do
+				get :index
+				response.should have_selector("a" , :content => "delete")
+			end
 			
 			it "should destroy the user" do
 				lambda do
 					delete :destroy, :id => @user
 				end.should change(User, :count).by(-1) 
 			end
+
+#			it "should not destroy userself" do
+#				delete :destroy, :id => @admin
+#				response.should redirect_to(root_path)
+#			end
 			
 			it "should redirect to the users page" do
 				delete :destroy, :id => @user

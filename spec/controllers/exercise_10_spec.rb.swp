@@ -1,0 +1,41 @@
+require 'spec_helper'
+
+describe UsersController do
+	render_views
+	
+	describe "GET 'index'" do
+
+		describe "for signed-in users" do
+
+			before(:each) do
+				@user = Factory(:user)
+				second = Factory(:user, :email => "another@example.co")
+				@users = [@user, second]
+				30.times do
+					@users << Factory(:user, :email => Factory.next(:email))
+				end
+			end
+
+			describe "as a non-admin user" do
+				it "should have no delete link" do
+					test_sign_in(@user)
+					get :index
+					@users[0..2].each do |user|
+						response.should_not have_selector("a", :content => "delete")
+					end
+				end
+			end
+
+		describe "as an admin user" do
+
+			admin = Factory(:user, :email => "admin@example.com", :admin => true)
+
+			test_sign_in(admin)
+			get :index
+			@users[0..2].each do |user|
+				response.should have_selector("a", :content => "delete")
+			end
+		end
+	end
+end
+end	
