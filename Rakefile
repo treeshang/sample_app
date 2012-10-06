@@ -4,6 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-include Rake::DSL #do this for fix heroku error
-
 SampleApp::Application.load_tasks
