@@ -44,7 +44,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :production, :staging do
+group :production do
+  gem 'therubyracer-heroku', '0.8.1.pre3'
 	gem 'pg'
 end
 
