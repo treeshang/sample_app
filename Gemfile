@@ -4,7 +4,7 @@ gem 'rails', '3.2.3'
 gem 'gravatar_image_tag'
 
 gem 'thin'
-#gem 'sqlite3'
+gem 'sqlite3'
 gem 'pg'
 
 gem 'will_paginate'
