@@ -4,8 +4,9 @@ gem 'rails', '3.2.3'
 gem 'gravatar_image_tag'
 
 gem 'thin'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'pg'
+gem 'faker'
 
 gem 'will_paginate'
 gem 'activerecord-postgresql-adapter'
@@ -42,6 +43,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :production, :staging do
+	gem 'pg'
+end
 
 group :development do
 	gem 'rspec-rails'
